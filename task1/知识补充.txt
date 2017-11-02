@@ -1,0 +1,7 @@
+关于Node.textContent 与Node.innerHTML的区别
+    1.比起Node.innerHTML,Node.textContent具有更好的性能
+    2.Node.textContent属性表示一个节点及其后代的文本内容
+    
+Node.textContent 与Node.innerText的区别
+    1.Node.textContent会获取所有元素的内容，包含标签
+    2.innerText可以认识到样式，所以不会返回隐藏的内容，但是textContent会
