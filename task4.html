@@ -1,0 +1,74 @@
+<!doctype>
+<html>
+    <head>
+				<meta charset="utf-8">
+					<style>
+						li {
+							display: inline-block;
+							background-color: #cd4a48;
+							color: #f3f6f7;
+							font-size: 20px;
+							text-align: center;
+							padding: 5px;
+							margin: 5px;
+							cursor: pointer;
+						}
+					</style>
+    </head>
+    <body>
+        <input id = "num" type = "text">
+        <button id="left_input">左输入</button>
+        <button id="right_input">右输入</button>
+        <button id="left_out">左侧出</button>
+        <button id="right_out">右侧出</button>
+        
+        <ul id="num_list"></ul>
+
+        <script>
+
+            var num = document.getElementById("num");
+            var leftInput = document.getElementById("left_input");
+            var rightInput = document.getElementById("right_input");
+            var leftOut = document.getElementById("left_out");
+            var rightOut = document.getElementById("right_out");
+            var numList = document.getElementById("num_list");
+						function numInput(direction){  
+							if(num.value == ""){
+									alert("请输入数字");
+							}else if(isNaN(num.value)){
+									alert("不符合要求，请输入数字")
+							}else{
+									var li = document.createElement("li");
+									li.innerHTML = num.value;
+									if(direction === "left"){
+										numList.insertBefore(li,numList.firstChild);
+									}else if(direction === "right"){
+										numList.appendChild(li);
+									}
+							}
+						} 
+						function numOut(node,direction){
+							if(numList.childNodes.length<=0){
+								alert("不存在元素可以删除");
+								return false;
+							}else{
+								if(direction === "left"){
+									alert("删除元素:"+numList.firstChild.innerText+"!")
+									numList.removeChild(numList.firstChild)
+								}else if(direction === "right"){
+									alert("删除元素:"+numList.lastChild.innerText+"!")
+									numList.removeChild(numList.lastChild)
+								}else{
+									alert("删除元素:"+numList.removeChild(node).innerText+"!")
+								}
+							}
+						}
+						leftInput.onclick = function(){numInput("left")};
+						rightInput.onclick = function(){numInput("right")};
+						leftOut.onclick = function(){numOut(-1,"left")};
+						rightOut.onclick = function(){numOut(-1,"right")}
+						numList.onclick = function(){numOut(event.target)};
+					  
+        </script>
+    </body>
+</html>
