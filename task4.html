@@ -1,7 +1,8 @@
-<!doctype>
+<!doctype html>
 <html>
     <head>
 				<meta charset="utf-8">
+			  <title>task4</title>
 					<style>
 						li {
 							display: inline-block;
@@ -22,9 +23,9 @@
         <button id="left_out">左侧出</button>
         <button id="right_out">右侧出</button>
         
-        <ul id="num_list"></ul>
+        <ul id="num_list"></ul>  //数字队列
 
-        <script>
+        <script type = "text/javascript">
 
             var num = document.getElementById("num");
             var leftInput = document.getElementById("left_input");
@@ -32,6 +33,7 @@
             var leftOut = document.getElementById("left_out");
             var rightOut = document.getElementById("right_out");
             var numList = document.getElementById("num_list");
+					 //插入数字
 						function numInput(direction){  
 							if(num.value == ""){
 									alert("请输入数字");
@@ -47,6 +49,7 @@
 									}
 							}
 						} 
+					 //删除数字
 						function numOut(node,direction){
 							if(numList.childNodes.length<=0){
 								alert("不存在元素可以删除");
@@ -63,6 +66,7 @@
 								}
 							}
 						}
+					 //按钮
 						leftInput.onclick = function(){numInput("left")};
 						rightInput.onclick = function(){numInput("right")};
 						leftOut.onclick = function(){numOut(-1,"left")};
