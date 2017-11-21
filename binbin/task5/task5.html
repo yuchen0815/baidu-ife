@@ -83,7 +83,7 @@
 			var length = outNum.children.length;
 			var i = 0, j = 1, timer = null, temp = 0;
 
-			timer = setInterval(run, 10);
+			timer = setInterval(run, 10);//设置计时器
 
 			function run() {
 				if (i < length) {
@@ -104,7 +104,7 @@
 						j = i + 1;
 					}
 				} else {
-					clearInterval(timer);
+					clearInterval(timer);//取消计时器
 				}
 			}
 }
