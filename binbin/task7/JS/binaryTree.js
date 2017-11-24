@@ -14,6 +14,7 @@ function showNode(node){
         node.style.backgroundColor = "#fff"
     }, timer+=500);
 }
+//前序遍历
 function preOrder(root){
     if(root){
         showNode(root);
@@ -21,6 +22,7 @@ function preOrder(root){
         preOrder(root.children[1])
     }
 }
+//中序遍历
 function inOrder(root){
     if(root){
         inOrder(root.children[0]);
@@ -28,6 +30,7 @@ function inOrder(root){
         inOrder(root.children[1])
     }
 }
+//后序遍历
 function postOrder(root){
     if(root){
         postOrder(root.children[0]);
@@ -35,6 +38,7 @@ function postOrder(root){
         showNode(root)
     }
 }
+//添加事件监听，使用冒泡传播方式
 preOrderBtn.addEventListener("click",function(){
     preOrder(root);
     timer = 0
