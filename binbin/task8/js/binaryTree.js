@@ -1,10 +1,8 @@
 var root = document.getElementById("root");
-var btnPreOrder = document.getElementById("preOrder");
-var btnPostOrder = document.getElementById("postOrder");
-var btnSearch = document.getElementById("btnSearch");
-var timer = 0;
 var inAnimation = false; 
 var orderQueue = [];
+
+//前序遍历
 function preOrder(root){
 	orderQueue.push(root);
 	for(var i = 0;i<root.childElementCount;i++){
@@ -13,6 +11,8 @@ function preOrder(root){
 		}
 	}
 }
+
+/*后序遍历
 function postOrder(root){
 	for(var j=0;j<root.childElementCount;j++){
 		if(root.children[j]!==null){
@@ -21,7 +21,8 @@ function postOrder(root){
 	}
 	orderQueue.push(root)
 }
-
+*/
+//判断queueWord是否在orderQueue中
 function render(queueWord){
 	if(inAnimation){
 		alert("in animation");
@@ -49,17 +50,6 @@ function render(queueWord){
 		}
 	}, 500);
 }
-
-
-btnPreOrder.addEventListener("click",function(){
-    preOrder(root);
-    timer = 0;
-},false)
-
-btnPostOrder.addEventListener("click",function(){
-    postOrder(root);
-    timer = 0
-},false)
 
 function resetBackgroundColor(){
 	for(var i = 0;i<orderQueue.length;i++){
