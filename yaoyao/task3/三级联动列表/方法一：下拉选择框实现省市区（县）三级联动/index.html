@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>城市选择的三种实现</title>
+		<link href = "css/style.css" rel="stylesheet">
+	</head>
+	<body>
+<div>
+    <fieldset>
+        <legend>方法一：下拉选择框实现省市区（县）三级联动</legend>
+        <form action="#">
+            <label for="addr-show">您选择的是：
+                <input type="text" value="" id="addr-show">
+            </label>
+            <br/>
+
+            <!--省份选择-->
+            <select id="prov" onchange="showCity(this)">
+                <option>=请选择省份=</option>
+
+            </select>
+
+            <!--城市选择-->
+            <select id="city" onchange="showCountry(this)">
+                <option>=请选择城市=</option>
+            </select>
+
+            <!--县区选择-->
+            <select id="country" onchange="selecCountry(this)">
+                <option>=请选择县区=</option>
+            </select>
+            <button type="button" class="btn met1" onClick="showAddr()">确定</button>
+        </form>
+    </fieldset>
+</div>
+		<script src = "js/city.js"></script>
+		<script src = "js/form.js"></script>
+	</body>
+</html>
