@@ -27,7 +27,7 @@ var current = {
 
 /*根据所选的省份来显示城市列表*/
 function showCity(obj){
-	var val = obj.options[obj.selectedIndex].value;
+	var val = obj.options[obj.selectedIndex].value;//采用options的属性来选择当前下拉选项的索引值
 	if(val!=current.prov){
 		current.prov = val;
 		addrShow.value = "";
