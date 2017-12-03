@@ -1,0 +1,95 @@
+在使用不同的几种方法去制作三级联动列表的时候,涉及到许多的知识点,为了更好的梳理思路,将其归纳至如下:
+(此篇为方法一的总结)	
+	1.自动展示省份列表:使用匿名自调函数,而匿名自调函数不会产生任何全局变量，
+	但是这种函数无法重复执行(除非将它放进某个循环或其他函数中),这种函数适合
+	执行一些一次性的或初始化的任务
+
+	2.访问数组中的元素
+		a.数组中的元素像一个对象以索引为属性名,元素为属性值，或者arr=['a','b']
+		有点像arrObj={0:'a',1:'b'},一个对象的属性是可以通过"."来访问,但是使用下面这样使用会抛出语法错误，
+		因为属性名称是非法的：console.log(arr.0); // a syntax error
+		这是由非法属性造成的，不是 Array 特有的。JavaScript 中数字开头的属性不能跟在点号后面；
+		必须在方括号中使用。比如说，如果你有一个名为 ‘3d’ 的属性，它只能通过方括号的形式进行访问。 
+		换言之访问合法的属性名可以用"."或者"[ ]",但是访问非法的属性只能用"[ ]",如下所示：
+		var years = [1950, 1960, 1970, 1980, 1990, 2000, 2010];
+		console.log(years.0);   // a syntax error
+		console.log(years[0]);  // works properly
+
+		renderer.3d.setTexture(model, 'character.png');     // a syntax error
+		renderer['3d'].setTexture(model, 'character.png');  // works properly
+
+		在3d的例子中，'3d'的引号是必须的。该方法也可以用在 JavaScript 数组中
+		（如：years['2'] 可以代替 years[2]），不过这不是必需的。在 years[2] 中，
+		2会被Javascript 引擎自动调用 toString 转换成一个 string 类型的变量。
+		正因为如此，'2' 和 '02' 在years 对象中将会指向不同的位置，下面这个例子将会打印 true：
+			console.log(years['2'] != years['02']);
+
+
+
+	
+	3.访问对象中的元素
+		a.一个对象的属性名可以是任何有效的JS字符串，或者是可以被转换为字符串的类型，
+		包括空字符串。若一个属性的名称如果不是一个有效的JS标识符(例如:一个由空格或
+		连字符，或者以数字开头的属性名),就只能通过方括号标记来询问，此标记法
+		在属性名称是动态判定(属性名只有到运行时才能判定)时非常有用(此时属性名为一个变量)
+		例:// 同时创建四个变量，用逗号分隔
+				var myObj = new Object(),
+						str = "myString",
+						rand = Math.random(),
+						obj = new Object();
+
+				myObj.type              = "Dot syntax";
+				myObj["date created"]   = "String with space";
+				myObj[str]              = "String value";
+				myObj[rand]             = "Random Number";
+				myObj[obj]              = "Object";
+				myObj[""]               = "Even an empty string";
+
+				console.log(myObj);
+				输出结果:{type: "Dot syntax", date created: "String with space", myString: "String value", 0.7515629447105077: "Random Number", [object Object]: "Object", …}
+					展开：
+					"":"Even an empty string"
+					0.7515629447105077:"Random Number"
+					[object Object]:"Object"
+					date created:"String with space"
+					myString:"String value"
+					type:"Dot syntax"
+		注: 方括号中的所有键都将转换为字符串类型，因为JavaScript中的对象只能使用String类型作为键类型。
+	  例如，在上面的代码中，当将键obj添加到myObj时，JavaScript将调用obj.toString()方法，并将此结果字符串用作新键。
+
+
+**********
+		总结:所以不管是对象访问属性还是数组访问元素,其在访问不确定的属性值(或元素)时(比如变量属性),需要使用
+	方括号来访问,在三联列表的方法一中,我们定义了var val = obj.options[obj.selectedIndex].value,
+	因为此时的val的值是不固定的(没有强行规定为省份是北京),所以在访问时为provice[val],并且城市的值也非固定的
+	所以为["city"](其实在整个这个例子的编写时,所有属性的访问或者元素的访问,都应该是使用方括号的方式),
+	至于[val]没有加引号可以理解为provice为数组,跟上例中的years['2']和years[2]的意思是一样的,
+	而在provice[val]的选择下已经确定了省份,在文件"city.js"中可以看到每个省份是一个对象,所以是访问它的属性,
+	而对象中访问属性就不是像数组中访问元素一样,在方括号中可以不加引号,所以就有 var cityLen = provice[val]["city"].length
+
+
+
+	4.onchange事件:官方解释是"其会在域的内容改变时发生",所以为了能使三联列表成功实现,其实现思路应该是
+	当省份一栏的内容改变时,会触发城市一栏,所以HTML"	<select id = "province" onchange = "showCity(this)">
+
+	5.select的selectedIndex属性,其可对选择栏选择了哪个元素进行定位
+		"var val = obj.options[obj.selectedIndex].value;"
+	
+
+
+
+------------------------------------------华丽丽-------------------------------------------------------------------------------------------
+
+实现思路:
+按钮的处理:
+	1.提交按钮的时候,要把此时的省市县的值显示在输入框中;
+	2.在自动显示省份列表的时候,此时的按钮状态应该显示为禁用模式;
+	(使用到按钮的属性"disabled",此Boolean值为true时,按钮启用禁用模式)
+
+
+
+
+	参考链接：
+	1.MDN使用对象("https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Working_with_Objects")
+	2.MDN-Array("https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array")
+	3.W3school-onchange事件("http://www.w3school.com.cn/jsref/event_onchange.asp")
