@@ -2,3 +2,19 @@ select {
     width: 120px;
     height: 30px;
 }
+* {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    width: 500px;
+    padding: 20px;
+    margin: 30px;
+    border: 1px solid #ccc;
+}
+
+legend{
+    font-size: 18px;
+    font-weight: bold;
+}
