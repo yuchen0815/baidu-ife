@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>方法二:按级选中省市县/区</title>
+		<link href = "css/style.css" rel = "stylesheet">
+	</head>
+	<body>
+		<fieldset>
+			<legend>方法二:按级选中省市县/区</legend>
+			<form id = "input">
+				<label for = "inputText">您选中的是:</label>
+				<input type = "text" id = "inputText"/>
+			</form>
+			<div id = "choice">
+				<ul id = "choiceList">
+					<li value = "0">省份</i>
+					<li value = "1">城市</li>
+					<li value = "2">县区</li>
+				</ul>
+				<div id = "show">
+					<ul id = "showList"></ul>
+				</div>
+			</div>
+			<button id = "admit">确定</button>
+		</fieldset>
+		<script src = "js/city.js"></script>
+		<script src = "js/form.js"></script>
+	</body>
+</html>

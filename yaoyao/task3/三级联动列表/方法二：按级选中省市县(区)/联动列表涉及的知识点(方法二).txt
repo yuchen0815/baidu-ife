@@ -1,0 +1,54 @@
+此篇总结在方法二中制作联动列表时所涉及的知识点:
+	1.页面自动加载事件:
+	(之前的方法一中采用的方式是使用匿名自调函数)
+	方法1：
+ Window.onload=function(){
+   Var name=document.getElementById(“name”).val();//加载HTML，并且加载外部所有所有的引用文件（图片，css样式，js等）
+}
+ 
+方法2：需要引入Jquery的 .js文件
+$(document).ready(function(){
+         alert("JQuery的第一个入门案例");//加载HTML，不需等待，立即加载
+});
+ 
+方法3： ( 等同于方法2 )
+jQuery(function (){
+       if($("input[name='message']").val()!="")
+           alert($("input[name='message']").attr("value"));
+});
+ 
+方法4 ：(等同于上)
+$(function (){
+    alert("JQuery 页面自动加载时执行 1 ....");
+ });
+ 
+方法5-1：window.onload事件的加载(页面加载时同时加载多个函数...)
+<html>
+    <body onload="function1(),function2(),function3()">
+   </body>
+</html>
+<script >
+ function1(){}
+function2(){}
+function3(){}
+</script>
+方法5-2：window.onload事件的加载(页面加载时同时加载多个函数...)
+<html>
+    <body>
+    </body>
+<html>
+<script>
+   function1(){}
+   function2(){}
+   function3(){}
+   window.onload=function(){
+    function1();
+    function2();
+    function3();
+   }
+</script>
+
+
+
+	参考链接:
+	1.页面自动加载事件()

@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+fieldset {
+    width: 500px;
+    padding: 20px;
+    margin: 30px;
+    border: 1px solid #ccc;
+}
+
+legend{
+    font-size: 18px;
+    font-weight: bold;
+}
+#inputText{
+    width: 200px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+#choiceList li,#showList li{
+  list-style-type:none;
+  display: inline;
+  cursor:pointer;
+  text-align: center;
+}
+#choiceList li{
+  width:163px;
+  height:45px;
+  margin-bottom:10px;
+  line-height: 45px;
+}
+#showList li{
+    width: 83px;
+    height: 30px;
+    border-radius: 4px;
+    line-height: 30px;
+    font-size: 14px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+#choice{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+#input{
+  margin:10px;
+}
+#admit {
+    width: 80px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: #aaa;
+    margin: 0 20px;
+}
