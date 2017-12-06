@@ -20,15 +20,16 @@ legend{
 }
 #choiceList li,#showList li{
   list-style-type:none;
-  display: inline;
   cursor:pointer;
   text-align: center;
+ display: inline-block;
 }
 #choiceList li{
   width:163px;
   height:45px;
   margin-bottom:10px;
   line-height: 45px;
+
 }
 #showList li{
     width: 83px;

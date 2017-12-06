@@ -1,54 +1,29 @@
 此篇总结在方法二中制作联动列表时所涉及的知识点:
 	1.页面自动加载事件:
 	(之前的方法一中采用的方式是使用匿名自调函数)
-	方法1：
+	
+方法1：
+
  Window.onload=function(){
-   Var name=document.getElementById(“name”).val();//加载HTML，并且加载外部所有所有的引用文件（图片，css样式，js等）
+   Var name=document.getElementById(“name”).val();//加载HTML，并且加载外部所有的引用文件（图片，css样式，js等）(一次只能保存一个函数的引用)
 }
  
 方法2：需要引入Jquery的 .js文件
+
 $(document).ready(function(){
-         alert("JQuery的第一个入门案例");//加载HTML，不需等待，立即加载
-});
- 
-方法3： ( 等同于方法2 )
-jQuery(function (){
-       if($("input[name='message']").val()!="")
-           alert($("input[name='message']").attr("value"));
-});
- 
-方法4 ：(等同于上)
-$(function (){
-    alert("JQuery 页面自动加载时执行 1 ....");
- });
- 
-方法5-1：window.onload事件的加载(页面加载时同时加载多个函数...)
-<html>
-    <body onload="function1(),function2(),function3()">
-   </body>
-</html>
-<script >
- function1(){}
-function2(){}
-function3(){}
-</script>
-方法5-2：window.onload事件的加载(页面加载时同时加载多个函数...)
-<html>
-    <body>
-    </body>
-<html>
-<script>
-   function1(){}
-   function2(){}
-   function3(){}
-   window.onload=function(){
-    function1();
-    function2();
-    function3();
-   }
-</script>
+         alert("JQuery的第一个入门案例");//加载HTML，不需等待，立即加载(在没加载所有的引用文件时就可以执行)(可加载多个文件且按顺序执行,不会覆盖)
+}); 
 
+方法实现思路:
+	方法二的实现思路基本和方法一的实现思路有些类似的地方,其不同的处理思路在于:
+方法一中在从省份列表转换成城市列表时,使用的思想是使用onchange事件,那么在省份的列表上绑定onchange事件
+一旦内容变更,便自动显示城市列表
+而在方法二中的实现思想是使用事件流,在事件流中,其涵盖的是事件捕获——目标事件——事件冒泡。
+此方法中实现事件流的过程为:
+		1.事件捕获:当我们点击省份的<li>标签时,出现的应该是省份的列表(城市和县区相同),此内容实现的地方是
+	document.getElementById("choiceList").onclick = function(ev)
 
+		2.目标事件:出现省份(城市,县区)列表时,即showList
 
-	参考链接:
-	1.页面自动加载事件()
+		3.事件冒泡:当我们点击省份的列表时,确定了所选择的省份时会自动出现城市的列表,此内容实现的地方是：
+		showList.onclick = function(ev)

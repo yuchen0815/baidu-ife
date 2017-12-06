@@ -62,10 +62,10 @@ function showCity(index){
 	choiceList[1].className = "selected";
 	current.prov = index;
 	current.provVal = provice[index].name;
-	var cityLen = prov[index]['city'].length;
+	var cityLen = prov[index].city.length;
 	for(var j=0;j<cityLen;j++){
 		var cityLi = document.createElement("li");
-		cityLi.innerText = provice[index]['city'][j].name;
+		cityLi.innerText = provice[index].city[j].name;
 		cityLi.index = j;
 		showList.appendChild(cityLi)
 	}
@@ -77,14 +77,14 @@ function showCountry(index){
 	choiceList[1].className = "";
 	choiceList[2].className = "selected";
 	current.city = index;
-	current.cityVal = provice[current.prov]['city'][index].name;
-	var countryLen = provice[current.prov]['city'][index].districtAndCounty.length;
+	current.cityVal = provice[current.prov].city[index].name;
+	var countryLen = provice[current.prov].city[index].districtAndCounty.length;
 	if(countryLen == 0){
-		inputText.value = current.prov + "-" + current.city
+		inputText.value = current.provVal + "-" + current.cityVal
 	}
 	for(var k=0;k<countryLen;k++){
 		var countryLi = document.createElement("li");
-		countryLi.innerText = provice[current.prov]['city'][index].districtAndCounty[k];
+		countryLi.innerText = provice[current.prov].city[index].districtAndCounty[k];
 		countryLi.index = k;
 		showList.appendChild(countryLi);
 	}
