@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    width: 500px;
+    padding: 20px;
+    margin: 30px;
+    border: 1px solid #ccc;
+}
+
+legend{
+    font-size: 18px;
+    font-weight: bold;
+}
+#inputText{
+    width: 200px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+#data-wrap{
+    border: 1px solid #ccc;
+}
+#data-order{
+    height: 30px;
+    background-color: #eee;
+}
+#data-order li{
+    list-style: none;
+    display: inline-block;
+    text-align: center;
+    width: 67px;
+    font-size: 14px;
+    line-height: 31px;
+    cursor: default;
+}
+
+.cityOn{
+    background-color: #fff;
+}
+#data-show{
+    padding: 20px 10px;
+}
+
+#data-show dt{
+    font-size: 14px;
+    padding: 5px;
+    color: #A5D2D5;
+}
+#data-show a{
+    font-size: 12px;
+    width: 38px;
+    color: #513A08;
+    padding: 5px;
+    text-decoration: underline;
+}
+
+#data-show a:hover{
+    color: #000;
+    background-color: #A5D2D5;
+    border-radius: 4px;
+    cursor: pointer;
+}
