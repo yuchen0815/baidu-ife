@@ -17,3 +17,5 @@ function deepClone(obj){
   }
   return o;
 }
+
+//此深度克隆的的对象类型限制为:数字、字符串、布尔、日期、数组、Object对象,不包含函数，正则对象等
