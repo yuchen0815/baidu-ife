@@ -72,3 +72,57 @@ function getPosition(element){
     return position;
 }
 
+
+/*事件*/
+
+
+//给一个element绑定一个针对event事件的响应，响应函数为listener
+function addEvent(element,event,listener){
+    if(element.addEventListener){
+        element.addEventListener(event,listener);
+    }else{
+        element.attachEvent("on"+event,listner);
+    }
+}
+
+//移除element对象对于event事件发生时执行listener的响应
+function removeEvent(element,event,listener){
+    if(element.removeEventListner){
+        element.removeEventListner(event,listener);
+    }else{
+        element.detachElement("on"+event,listener)
+    }
+}
+
+// 实现对click事件的绑定
+function addClickEvent(element,listener){
+    if(element.addEventListener){
+        element.addEventListener("click",listener)
+    }else if (element.attachEvent) {
+        element.attachEvent("onclick",listner)   
+    }
+}
+//简化代码
+function addClickEvent(element,listner){
+    addEvent(element,"click",listener)
+}
+
+//实现对于按Enter键时的事件绑定
+function addEnterEvent(element,listener){
+    addEvnet(element,"keydown",function(event){
+        if(event.keycode == 13){     //Enter键的keycode值为13,在发生keydown和keyup事件的时候,event对象的keycode上会包含有一个代码，与键盘上的一个特定的键对应
+            listner();
+        }
+    })
+}
+
+//使用事件代理实现新的方法
+function delegateEvnet(element,tag,eventName,listner){
+    addEvnet(element,eventName,function(event){
+        event = window.event||event;
+        target = event.target||event.srcElement;
+        if(target.tagName.toLowerCase() == tag.toLowerCase()){
+            listener.call(target,event);
+        }
+    })
+}
