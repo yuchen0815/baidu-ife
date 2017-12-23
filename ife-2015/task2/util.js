@@ -126,3 +126,45 @@ function delegateEvnet(element,tag,eventName,listner){
         }
     })
 }
+
+
+//Ajax
+//封装一个Ajax
+function ajax(url,options){
+    
+    var dataResult;  //处理数据
+
+    if(typeof options.data == "object"){
+        var str = "";
+        for(var i in options.data){
+            str = str + i + "=" + options.data[i] + "&";
+        }
+        dataResult = str.substring(0, str.length - 1);
+    }
+
+    //判断type
+    options.type = options.type || "GET";
+
+    //发送请求
+    var xhr = windows.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+    xhr.open(options.type,url,true);
+    if(options.type == "GET"){
+        xhr.send(null);
+    }else{
+        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        xhr.send(dataResult);
+    }
+    
+    //判断当前的响应是否成功
+    xhr.onreadystatechange = function(){
+        if(xhr.readystate == 200 && xhr.status == 4){
+            if(options.onsuccess){
+                options.onsuccess(xhr.responseXML,xhr.responseText)
+            }
+        }else{
+            if(options.onfail){
+                options.onfail();
+            }
+        }
+    }
+}
